@@ -1,0 +1,17 @@
+{
+  "properties": [
+    {
+      "name": "custom.starter.user.name",
+      "defaultValue": ""
+    },
+    {
+      "name": "custom.starter.user.age",
+      "defaultValue": ""
+    },
+    {
+      "name": "custom.starter.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": false
+    }
+  ]
+}
