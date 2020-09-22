@@ -1,4 +1,4 @@
-###自定义Srpingboot的Starter
+### 自定义Srpingboot的Starter
 > 自定义Starter需要以下几步：
 
 1、定义properties文件的配置类（根据业务需要）
@@ -58,11 +58,31 @@ public class UserAutoConfigure {
 
 4、注册自动装配类到spring.factories文件中
 > 首先在resource目录下创建META-INF目录，然后在MATE-INF中创建spring.factories文件，
-> 并在文件里指定自动装配类的全路径
+> 并在文件里指定自动装配类的全路径。
+>
 
 ```properties
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.hqq.starter.customstarter.UserAutoConfigure
+```
+
+>注意：如果我们不想在业务项目pom.xml中引入自定义Starter后就执行初始化逻辑，
+>而是由用户来指定是否要开启自定义Starter的自动装配功能，则可以自定义注解@EnableUserClient,
+>此时就不需要编写spring.factories文件了。用户在项目的启动类上添加@EnableUserClient注解即可。
+```java
+/**
+ * 启用UserAutoConfigure自动装配注解（使用当前注解时，则不需要编写spring.factories文件了）
+ * 用户可根据业务需要是否在项目初始化时需要启动当前自定义的Starter，
+ * 将该注解标注在项目启动类上，表明启用自定义Starter，否则就算pom.xml中已引入当前自定义的Starter也不会实例
+ * 化任何Bean
+ */
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@Import({UserAutoConfigure.class})  //该注解将UserAutoConfigure自动装配类导入，实现自动装配
+public @interface EnableUserClient {
+}
 ```
 
 5、创建properties文件内容提示（根据业务需要）
