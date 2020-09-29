@@ -1,6 +1,7 @@
 package com.hqq.starter.usecustomstarter.service;
 
 import com.hqq.starter.customstarter.UserClient;
+import com.hqq.starter.usecustomstarter.entity.UserInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +24,13 @@ public class UserService {
 
     public int getUserAge(){
         return this.userClient.getUserAge();
+    }
+
+    public UserInfo getUserInfo(){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(getUserName());
+        userInfo.setUserAge(getUserAge());
+        return userInfo;
     }
 
 }

@@ -7,6 +7,13 @@
     <groupId>org.example</groupId>
     <artifactId>spring-cloud-learning</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>custom-starter</module>
+        <module>eureka-server</module>
+        <module>eureka-consumer</module>
+        <module>use-custom-starter</module>
+    </modules>
 
 </project>
